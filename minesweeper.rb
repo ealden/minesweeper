@@ -62,7 +62,10 @@ class Minesweeper
       x = mine[:row] + offset[:x]
       y = mine[:column] + offset[:y]
 
-      if ((x >= 0) and (x < @length)) and ((y >= 0) and (y < @height))
+      x_within_bounds = ((x >= 0) and (x < @length))
+      y_within_bounds = ((y >= 0) and (y < @height))
+
+      if x_within_bounds and y_within_bounds
         value = minefield[x][y]
 
         (minefield[x][y] = value + 1) unless value == MINE
