@@ -17,10 +17,10 @@ class Minesweeper
   end
 
   def add_mine column:, row:
-    @mines << { column: column, row: row }
-
     x = row - 1
     y = column - 1
+
+    @mines << { column: y, row: x }
 
     @minefield[x][y] = MINE
   end
