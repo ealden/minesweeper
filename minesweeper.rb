@@ -54,7 +54,9 @@ class Minesweeper
       y = mine[:column] + offset[:y]
 
       unless ((x < 0) or (y < 0))
-        minefield[x][y] = minefield[x][y] + 1
+        value = minefield[x][y]
+
+        (minefield[x][y] = value + 1) unless value == MINE
       end
     end
   end
