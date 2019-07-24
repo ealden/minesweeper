@@ -102,4 +102,25 @@ class MinesweeperTest < Minitest::Test
 
     assert_equal expected, actual
   end
+
+  def test_must_sweep_4x4_minefield_with_mines_at_the_center!
+    expected = [
+      [1,  2 ,  2 , 1],
+      [2, '*', '*', 2],
+      [2, '*', '*', 2],
+      [1,  2 ,  2 , 1]
+    ]
+
+    minesweeper = Minesweeper.new length: 4,
+                                  height: 4
+
+    minesweeper.add_mine column: 2, row: 2
+    minesweeper.add_mine column: 3, row: 2
+    minesweeper.add_mine column: 2, row: 3
+    minesweeper.add_mine column: 3, row: 3
+
+    actual = minesweeper.sweep
+
+    assert_equal expected, actual
+  end
 end
