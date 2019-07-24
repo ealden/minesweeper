@@ -2,20 +2,11 @@ class Minesweeper
   MINE = '*'
 
   def initialize length: 0, height: 0
-    @minefield = []
-    @mines = []
     @length = length
     @height = height
 
-    height.times do
-      row = []
-
-      length.times do
-        row << 0
-      end
-
-      @minefield << row
-    end
+    @minefield = create_minefield length, height
+    @mines = []
   end
 
   def add_mine column:, row:
@@ -38,6 +29,22 @@ class Minesweeper
   end
 
   private
+
+  def create_minefield length, height
+    minefield = []
+
+    height.times do
+      row = []
+
+      length.times do
+        row << 0
+      end
+
+      minefield << row
+    end
+
+    minefield
+  end
 
   OFFSETS = {
     N:  { x:  0, y: -1 },
