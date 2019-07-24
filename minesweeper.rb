@@ -4,6 +4,8 @@ class Minesweeper
   def initialize length: 0, height: 0
     @minefield = []
     @mines = []
+    @length = length
+    @height = height
 
     height.times do
       row = []
@@ -53,7 +55,7 @@ class Minesweeper
       x = mine[:row] + offset[:x]
       y = mine[:column] + offset[:y]
 
-      unless ((x < 0) or (y < 0))
+      if ((x >= 0) and (x < @length)) and ((y >= 0) and (y < @height))
         value = minefield[x][y]
 
         (minefield[x][y] = value + 1) unless value == MINE
