@@ -1,6 +1,9 @@
 class Minesweeper
+  MINE = '*'
+
   def initialize length: 0, height: 0
     @minefield = []
+    @mines = []
 
     height.times do
       row = []
@@ -13,7 +16,20 @@ class Minesweeper
     end
   end
 
+  def add_mine column:, row:
+    @mines << { column: column, row: row }
+  end
+
   def sweep
-    @minefield
+    minefield = @minefield
+
+    @mines.each do |mine|
+      x = mine[:column] - 1
+      y = mine[:row] - 1
+
+      minefield[x][y] = MINE
+    end
+
+    minefield
   end
 end
