@@ -26,6 +26,18 @@ class Minesweeper
   end
 
   def sweep
-    @minefield
+    minefield = @minefield
+
+    @mines.each do |mine|
+      x = mine[:row]
+      y = mine[:column]
+
+      minefield[x + 1][y] = minefield[x + 1][y] + 1 # E
+      minefield[x][y + 1] = minefield[x][y + 1] + 1 # S
+
+      minefield[x + 1][y + 1] = minefield[x + 1][y + 1] + 1 # NE
+    end
+
+    minefield
   end
 end
