@@ -47,12 +47,12 @@ class MinesweeperTest < Minitest::Test
     assert_equal expected, actual
   end
 
-  def xtest_must_show_4x4_minefield_with_mine_at_2_3
+  def test_must_sweep_4x4_minefield_with_a_mine_at_2_3
     expected = [
       [0,  0 , 0, 0],
-      [0,  0 , 0, 0],
-      [0, '*', 0, 0],
-      [0,  0 , 0, 0]
+      [1,  1 , 1, 0],
+      [1, '*', 1, 0],
+      [1,  1 , 1, 0]
     ]
 
     minesweeper = Minesweeper.new length: 4,
@@ -65,12 +65,12 @@ class MinesweeperTest < Minitest::Test
     assert_equal expected, actual
   end
 
-  def xtest_must_show_4x4_minefield_with_mines_at_1_1_and_2_3
+  def test_must_sweep_4x4_minefield_with_mines_at_1_1_and_2_3
     expected = [
-      ['*',  0 , 0, 0],
-      [ 0 ,  0 , 0, 0],
-      [ 0 , '*', 0, 0],
-      [ 0 ,  0 , 0, 0]
+      ['*',  1 , 0, 0],
+      [ 2 ,  2 , 1, 0],
+      [ 1 , '*', 1, 0],
+      [ 1 ,  1 , 1, 0]
     ]
 
     minesweeper = Minesweeper.new length: 4,

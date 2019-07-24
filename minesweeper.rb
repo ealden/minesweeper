@@ -29,15 +29,33 @@ class Minesweeper
     minefield = @minefield
 
     @mines.each do |mine|
-      x = mine[:row]
-      y = mine[:column]
-
-      minefield[x + 1][y] = minefield[x + 1][y] + 1 # E
-      minefield[x][y + 1] = minefield[x][y + 1] + 1 # S
-
-      minefield[x + 1][y + 1] = minefield[x + 1][y + 1] + 1 # NE
+      sweep_around minefield, mine
     end
 
     minefield
+  end
+
+  private
+
+  OFFSETS = {
+    N:  { x:  0, y: -1 },
+    NE: { x:  1, y: -1 },
+    E:  { x:  1, y:  0 },
+    SE: { x:  1, y:  1 },
+    S:  { x:  0, y:  1 },
+    SW: { x: -1, y:  1 },
+    W:  { x: -1, y:  0 },
+    NW: { x: -1, y: -1 }
+  }
+
+  def sweep_around minefield, mine
+    OFFSETS.each_value do |offset|
+      x = mine[:row] + offset[:x]
+      y = mine[:column] + offset[:y]
+
+      unless ((x < 0) or (y < 0))
+        minefield[x][y] = minefield[x][y] + 1
+      end
+    end
   end
 end
