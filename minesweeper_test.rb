@@ -46,4 +46,22 @@ class MinesweeperTest < Minitest::Test
 
     assert_equal expected, actual
   end
+
+  def test_must_show_4x4_minefield_with_mine_at_2_3
+    expected = [
+      [0,  0 , 0, 0],
+      [0,  0 , 0, 0],
+      [0, '*', 0, 0],
+      [0,  0 , 0, 0]
+    ]
+
+    minesweeper = Minesweeper.new length: 4,
+                                  height: 4
+
+    minesweeper.add_mine column: 2, row: 3
+
+    actual = minesweeper.sweep
+
+    assert_equal expected, actual
+  end
 end

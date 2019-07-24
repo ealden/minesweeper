@@ -24,8 +24,8 @@ class Minesweeper
     minefield = @minefield
 
     @mines.each do |mine|
-      x = mine[:column] - 1
-      y = mine[:row] - 1
+      x = mine[:row] - 1
+      y = mine[:column] - 1
 
       minefield[x][y] = MINE
     end
