@@ -13,7 +13,7 @@ class Minesweeper
     x = row - 1
     y = column - 1
 
-    @mines << { column: y, row: x }
+    @mines << { x: x, y: y }
 
     @minefield[x][y] = MINE
   end
@@ -59,8 +59,8 @@ class Minesweeper
 
   def sweep_around minefield, mine
     OFFSETS.each_value do |offset|
-      x = mine[:row] + offset[:x]
-      y = mine[:column] + offset[:y]
+      x = mine[:x] + offset[:x]
+      y = mine[:y] + offset[:y]
 
       x_within_bounds = ((x >= 0) and (x < @length))
       y_within_bounds = ((y >= 0) and (y < @height))
